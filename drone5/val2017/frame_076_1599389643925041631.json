@@ -1,0 +1,38 @@
+{
+    "fillColor": [
+        255,
+        0,
+        0
+    ],
+    "flags": {},
+    "imageData": null,
+    "imageHeight": 540,
+    "imagePath": "frame_076_1599389643925041631.png",
+    "imageWidth": 720,
+    "lineColor": [
+        0,
+        255,
+        0,
+        128
+    ],
+    "shapes": [
+        {
+            "fill_color": null,
+            "flags": {},
+            "label": "jetson_lequad",
+            "line_color": null,
+            "points": [
+                [
+                    290,
+                    319
+                ],
+                [
+                    407,
+                    427
+                ]
+            ],
+            "shape_type": "rectangle"
+        }
+    ],
+    "version": "3.16.2"
+}

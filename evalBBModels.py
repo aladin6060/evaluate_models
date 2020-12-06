@@ -35,6 +35,7 @@ end = torch.cuda.Event(enable_timing=True)
 
 #Loop over all models and over all 100 images
 model_time = []
+print("Cuda is available?{}".format(torch.cuda.is_available()))
 for model in models:
     model.eval()
     time = []
@@ -53,11 +54,12 @@ for model in models:
         if torch.cuda.is_available():
             input_batch = input_batch.to('cuda')
             model.to('cuda')
-            end.record()
+            
 
         with torch.no_grad():
-            start.record()
+            end.record()
             output = model(input_batch)
+            start.record()
         # Tensor of shape 1000, with confidence scores over Imagenet's 1000 classes
 
         # The output has unnormalized scores. To get probabilities, you can run a softmax on it.
@@ -66,8 +68,11 @@ for model in models:
         torch.cuda.synchronize()
         time.append(end.elapsed_time(start))
     model_time.append(sum(time)/len(time))
+    print("Evaluating {}".format(model))
 
 #store results as a dict in a json file
+print("writing files")
 res = {models_string[i]: model_time[i] for i in range(len(models_string))} 
 with open('data.json', 'w') as f:
     json.dump(res, f)
+print("finished")

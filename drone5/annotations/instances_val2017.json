@@ -1,0 +1,268 @@
+{
+    "info": {
+        "description": "drone dataset",
+        "url": "",
+        "version": "1.0",
+        "year": 2020,
+        "contributor": "Silvio Müller",
+        "date_created": "2020/11/16"
+    },
+    "images": [
+        {
+            "file_name": "frame_069_1599389643225811272.png",
+            "id": 0,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_070_1599389643325684486.png",
+            "id": 1,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_071_1599389643425817655.png",
+            "id": 2,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_072_1599389643524574104.png",
+            "id": 3,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_073_1599389643625951324.png",
+            "id": 4,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_074_1599389643725919343.png",
+            "id": 5,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_075_1599389643825888426.png",
+            "id": 6,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_076_1599389643925041631.png",
+            "id": 7,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_077_1599389644025764725.png",
+            "id": 8,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        },
+        {
+            "file_name": "frame_078_1599389644125756477.png",
+            "id": 9,
+            "width": 720,
+            "height": 540,
+            "license": 1,
+            "flicker_url": "",
+            "coco_url": "",
+            "date_captured": "2020-12-01 00:00:01"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 0,
+            "image_id": 0,
+            "bbox": [
+                307,
+                299,
+                103,
+                96
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 1,
+            "image_id": 1,
+            "bbox": [
+                305,
+                306,
+                105,
+                98
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 2,
+            "image_id": 2,
+            "bbox": [
+                304,
+                312,
+                105,
+                100
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 3,
+            "image_id": 3,
+            "bbox": [
+                300,
+                318,
+                109,
+                100
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 4,
+            "image_id": 4,
+            "bbox": [
+                297,
+                321,
+                112,
+                103
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 5,
+            "image_id": 5,
+            "bbox": [
+                295,
+                324,
+                113,
+                103
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 6,
+            "image_id": 6,
+            "bbox": [
+                293,
+                323,
+                114,
+                106
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 7,
+            "image_id": 7,
+            "bbox": [
+                290,
+                319,
+                117,
+                108
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 8,
+            "image_id": 8,
+            "bbox": [
+                287,
+                312,
+                119,
+                110
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        },
+        {
+            "id": 9,
+            "image_id": 9,
+            "bbox": [
+                284,
+                300,
+                122,
+                113
+            ],
+            "category_id": 1,
+            "segmentation": [],
+            "area": 0,
+            "iscrowd": 0
+        }
+    ],
+    "licenses": [
+        {
+            "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/",
+            "id": 1,
+            "name": "Attribution-NonCommercial-ShareAlike License"
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "drone",
+            "supercategory": "drone"
+        }
+    ]
+}
