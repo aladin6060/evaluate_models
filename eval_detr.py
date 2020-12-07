@@ -23,7 +23,7 @@ end = torch.cuda.Event(enable_timing=True)
 #Loading Model
 model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
 model.eval()
-
+print("Is Cuda available? {}".format(torch.cuda.is_available()))
 #Looping over all images
 time = []
 for idx,path in enumerate(files):
