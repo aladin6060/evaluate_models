@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import os
 import torch
 from torch import nn
-from torchvision.models import resnet50
 import torchvision.transforms as T
+import statistics
 torch.set_grad_enabled(False)
 
 #Loading the path to all files
@@ -21,7 +21,7 @@ start = torch.cuda.Event(enable_timing=True)
 end = torch.cuda.Event(enable_timing=True)
 
 #Loading Model
-model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
+model = torch.hub.load('facebookresearch/detr', 'detr_resnet101', pretrained=True)
 model.eval()
 print("Is Cuda available? {}".format(torch.cuda.is_available()))
 #Looping over all images
@@ -49,5 +49,5 @@ for idx,path in enumerate(files):
     torch.cuda.synchronize()
     time.append(start.elapsed_time(end))
     print("Image {} has been analyzed".format(idx))
-mean_time = sum(time)/len(time)
+mean_time = statistics.median(time)
 print("The mean time for the analysis of a image is {}".format(mean_time))

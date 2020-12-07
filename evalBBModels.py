@@ -14,7 +14,6 @@ resnext50_32x4d = models.resnext50_32x4d(pretrained=True)
 wide_resnet50_2 = models.wide_resnet50_2(pretrained=True)
 mobilenet = models.mobilenet_v2(pretrained=True)
 
-
 from efficientnet_pytorch import EfficientNet
 EfficientNetB0 = EfficientNet.from_pretrained('efficientnet-b0')
 EfficientNetB2 = EfficientNet.from_pretrained('efficientnet-b2')
@@ -38,7 +37,7 @@ end = torch.cuda.Event(enable_timing=True)
 #Loop over all models and over all 100 images
 model_time = []
 print("Cuda is available?{}".format(torch.cuda.is_available()))
-for model in models:
+for model, name_model in zip(models,models_string):
     model.eval()
     time = []
     for path in files:
@@ -59,9 +58,11 @@ for model in models:
             
 
         with torch.no_grad():
-            end.record()
-            output = model(input_batch)
+            
             start.record()
+            output = model(input_batch)
+            end.record()
+            
         # Tensor of shape 1000, with confidence scores over Imagenet's 1000 classes
 
         # The output has unnormalized scores. To get probabilities, you can run a softmax on it.
@@ -70,7 +71,7 @@ for model in models:
         torch.cuda.synchronize()
         time.append(end.elapsed_time(start))
     model_time.append(statistics.median(time))
-    print("Evaluating {}".format(model))
+    print("Evaluating {}".format(name_model))
 
 #store results as a dict in a json file
 print("writing files")
