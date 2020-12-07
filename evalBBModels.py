@@ -7,17 +7,27 @@ import json
 
 #Importing all models and defining models vector
 resnet18 = models.resnet18(pretrained=True)
+resnet18.eval()
 resnet50 = models.resnet50(pretrained=True)
+resnet50.eval()
 resnet101 = models.resnet101(pretrained=True)
+resnet101.eval()
 resnext50_32x4d = models.resnext50_32x4d(pretrained=True)
+resnext50_32x4d.eval()
 wide_resnet50_2 = models.wide_resnet50_2(pretrained=True)
+wide_resnet50_2.eval()
 mobilenet = models.mobilenet_v2(pretrained=True)
+mobilenet.eval()
 
 from efficientnet_pytorch import EfficientNet
 EfficientNetB0 = EfficientNet.from_pretrained('efficientnet-b0')
+EfficientNetB0.eval()
 EfficientNetB2 = EfficientNet.from_pretrained('efficientnet-b2')
+EfficientNetB2.eval()
 EfficientNetB4 = EfficientNet.from_pretrained('efficientnet-b4')
+EfficientNetB4.eval()
 EfficientNetB6 = EfficientNet.from_pretrained('efficientnet-b6')
+EfficientNetB6.eval()
 models = [resnet18,resnet50,resnet101,resnext50_32x4d,wide_resnet50_2,mobilenet,EfficientNetB0,
           EfficientNetB2,EfficientNetB4,EfficientNetB6]
 models_string = ['resnet18','resnet50','resnet101','resnext50_32x4d','wide_resnet50_2','mobilenet','EfficientNetB0',
