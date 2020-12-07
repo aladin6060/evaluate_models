@@ -1,0 +1,1 @@
+The mean time for the analysis of an image is 732.3959017944336ms on the Jetson with Resnet 50 
