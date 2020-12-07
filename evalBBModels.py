@@ -27,9 +27,9 @@ models_string = ['resnet18','resnet50','resnet101','resnext50_32x4d','wide_resne
 
 #load the path for all images that are going to be analyzed
 files = []
-for file in os.listdir("/coco/Val2017"):
+for file in os.listdir("./coco/val2017"):
     if file.endswith(".jpg"):
-        files.append(os.path.join("/coco/Val2017", file))
+        files.append(os.path.join("./coco/val2017", file))
 
 #Initialize the cuda timing
 start = torch.cuda.Event(enable_timing=True)
