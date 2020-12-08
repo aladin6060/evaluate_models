@@ -50,4 +50,4 @@ for idx,path in enumerate(files):
     time.append(start.elapsed_time(end))
     print("Image {} has been analyzed".format(idx))
 mean_time = statistics.median(time)
-print("The mean time for the analysis of a image is {}".format(mean_time))
+print("The median time for the analysis of a image is {}".format(mean_time))

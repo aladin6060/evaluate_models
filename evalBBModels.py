@@ -69,7 +69,7 @@ for model, name_model in zip(models,models_string):
         predictions = torch.nn.functional.softmax(output[0], dim=0)
         maxvalue= torch.argmax(predictions)
         torch.cuda.synchronize()
-        time.append(end.elapsed_time(start))
+        time.append(start.elapsed_time(end))
     model_time.append(statistics.median(time))
     print("Evaluating {}".format(name_model))
 
