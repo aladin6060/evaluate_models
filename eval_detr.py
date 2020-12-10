@@ -12,18 +12,19 @@ torch.set_grad_enabled(False)
 
 #Loading the path to all files
 files = []
-for file in os.listdir("coco/val2017"):
+for file in os.listdir("./coco/val2017"):
     if file.endswith(".jpg"):
-        files.append(os.path.join("coco/val2017", file))
+        files.append(os.path.join("./coco/val2017", file))
 
 #Initialize the cuda timing
 start = torch.cuda.Event(enable_timing=True)
 end = torch.cuda.Event(enable_timing=True)
 
 #Loading Model
-model = torch.hub.load('facebookresearch/detr', 'detr_resnet101', pretrained=True)
+model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
 model.eval()
-print("Is Cuda available? {}".format(torch.cuda.is_available()))
+
+
 #Looping over all images
 time = []
 for idx,path in enumerate(files):
@@ -40,6 +41,9 @@ for idx,path in enumerate(files):
     if torch.cuda.is_available():
         img = img.to('cuda')
         model.to('cuda')
+    else:
+        raise NameError("Cuda is not available")
+
 
     # propagate through the model
     start.record()

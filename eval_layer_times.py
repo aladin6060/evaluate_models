@@ -82,5 +82,5 @@ for idx,path in enumerate(files):
     print("Image {} has been analyzed".format(idx))
 backbone_median = statistics.median(time_backbone)
 transformer_median = statistics.median(time_transformer)
-print(backbone_median)
-print(transformer_median)
+print("The median evaluation time for the backbone is {} ms".format(backbone_median))
+print("The median evaluation time for the transformer is {} ms".format(transformer_median))

@@ -36,7 +36,6 @@ end = torch.cuda.Event(enable_timing=True)
 
 #Loop over all models and over all 100 images
 model_time = []
-print("Cuda is available?{}".format(torch.cuda.is_available()))
 for model, name_model in zip(models,models_string):
     model.eval()
     time = []
@@ -53,21 +52,17 @@ for model, name_model in zip(models,models_string):
 
         # move the input and model to GPU for speed if available
         if torch.cuda.is_available():
-            input_batch = input_batch.to('cuda')
+            img = img.to('cuda')
             model.to('cuda')
-            
+        else:
+            raise NameError("Cuda is not available")
 
-        with torch.no_grad():
-            
+    
+        with torch.no_grad(): 
             start.record()
             output = model(input_batch)
             end.record()
             
-        # Tensor of shape 1000, with confidence scores over Imagenet's 1000 classes
-
-        # The output has unnormalized scores. To get probabilities, you can run a softmax on it.
-        predictions = torch.nn.functional.softmax(output[0], dim=0)
-        maxvalue= torch.argmax(predictions)
         torch.cuda.synchronize()
         time.append(start.elapsed_time(end))
     model_time.append(statistics.median(time))
