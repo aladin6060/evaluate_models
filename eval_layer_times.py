@@ -1,11 +1,13 @@
 import torch
 import os
+import torch
+import torchvision
 import torchvision.models as models
 from torchvision import datasets
 import torchvision.transforms as T
 from PIL import Image
-import json
 import statistics
+from util.misc import (NestedTensor, nested_tensor_from_tensor_list)
 
 #Initialize the cuda timing
 start = torch.cuda.Event(enable_timing=True)
@@ -13,9 +15,10 @@ end = torch.cuda.Event(enable_timing=True)
 
 #read the path for all images
 files = []
-for file in os.listdir("coco/val2017"):
+for file in os.listdir("./coco/val2017"):
     if file.endswith(".jpg"):
-        files.append(os.path.join("coco/val2017", file))
+        files.append(os.path.join("./coco/val2017", file))
+print("There are {} images to analyze".format(len(files)))
 #Load model
 model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
 model.eval();
@@ -31,7 +34,7 @@ backbone = model.backbone
 time_backbone = []
 time_transformer = []
 for idx,path in enumerate(files):
-    im = Image.open(path)
+    im = Image.open(path).convert('RGB')
     transform = T.Compose([
     T.Resize(800),
     T.ToTensor(),
@@ -47,29 +50,37 @@ for idx,path in enumerate(files):
     else:
         raise NameError("Cuda is not available")
 
+    ###
+    if isinstance(img, (list, torch.Tensor)):
+      img = nested_tensor_from_tensor_list(img)
+    
 
     # propagate through the model
     # timing the backbone
     start.record()
-    out1 = backbone(img)
+    features, pos = backbone(img)
     end.record()
     torch.cuda.synchronize()
     time_backbone.append(start.elapsed_time(end))
 
-    out2 = input_proj(out1)
+    src, mask = features[-1].decompose()
 
-    out3 = query_embed(out2)
-
-    out4 = bbox_embed(out3)
-
-    out5 = class_embed(out4)
+    assert mask is not None
     #timing the transformer
     start.record()
-    out = transformer(out5)
+    hs = transformer(input_proj(src), mask, query_embed.weight, pos[-1])[0]
     end.record()
     torch.cuda.synchronize()
     time_transformer.append(start.elapsed_time(end))
+    
+    outputs_class = class_embed(hs)
+    outputs_coord = bbox_embed(hs).sigmoid()
+
+    out = {'pred_logits': outputs_class[-1], 'pred_boxes': outputs_coord[-1]}
+    
 
     print("Image {} has been analyzed".format(idx))
 backbone_median = statistics.median(time_backbone)
 transformer_median = statistics.median(time_transformer)
+print(backbone_median)
+print(transformer_median)
