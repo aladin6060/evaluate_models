@@ -36,6 +36,7 @@ end = torch.cuda.Event(enable_timing=True)
 
 #Loop over all models and over all 100 images
 model_time = []
+model_std = []
 for model, name_model in zip(models,models_string):
     model.eval()
     time = []
@@ -52,7 +53,7 @@ for model, name_model in zip(models,models_string):
 
         # move the input and model to GPU for speed if available
         if torch.cuda.is_available():
-            img = img.to('cuda')
+            img = input_batch.to('cuda')
             model.to('cuda')
         else:
             raise NameError("Cuda is not available")
@@ -60,17 +61,20 @@ for model, name_model in zip(models,models_string):
     
         with torch.no_grad(): 
             start.record()
-            output = model(input_batch)
+            output = model(img)
             end.record()
             
         torch.cuda.synchronize()
         time.append(start.elapsed_time(end))
     model_time.append(statistics.median(time))
+    model_std.append(statistics.stdev(time))
     print("Evaluating {}".format(name_model))
 
 #store results as a dict in a json file
 print("writing files")
-res = {models_string[i]: model_time[i] for i in range(len(models_string))} 
+res_time = {models_string[i]: model_time[i] for i in range(len(models_string))}
+res_stdev = {models_string[i]: model_std[i] for i in range(len(models_string))}
+res = {"times" : res_time, "stdev": res_stdev}
 with open('data.json', 'w') as f:
     json.dump(res, f)
 print("finished")
